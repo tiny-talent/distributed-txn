@@ -231,9 +231,7 @@ func (a *ExecStmt) handleNoDelayExecutor(ctx context.Context, e Executor) (sqlex
 		terror.Log(e.Close())
 	}()
 
-	// Hint: step I.4.3.1
-	// YOUR CODE HERE (lab4)
-	panic("YOUR CODE HERE")
+	err = Next(ctx, e, newFirstChunk(e))
 	if err != nil {
 		return nil, err
 	}

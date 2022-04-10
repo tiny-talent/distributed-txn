@@ -147,7 +147,7 @@ func (s *tikvSnapshot) get(bo *Backoffer, k kv.Key) ([]byte, error) {
 			// If the key error is a lock, there are 2 possible cases:
 			//   1. The transaction is during commit, wait for a while and retry.
 			//   2. The transaction is dead with some locks left, resolve it.
-			// YOUR CODE HERE (lab3).
+			// YOUR CODE HERE (lab2).
 			panic("YOUR CODE HERE")
 			continue
 		}

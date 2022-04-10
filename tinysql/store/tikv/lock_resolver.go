@@ -298,7 +298,7 @@ func (lr *LockResolver) getTxnStatus(bo *Backoffer, txnID uint64, primary []byte
 	var status TxnStatus
 	var req *tikvrpc.Request
 	// build the request
-	// YOUR CODE HERE (lab3).
+	// YOUR CODE HERE (lab2).
 	panic("YOUR CODE HERE")
 	for {
 		loc, err := lr.store.GetRegionCache().LocateKey(bo, primary)
@@ -326,7 +326,7 @@ func (lr *LockResolver) getTxnStatus(bo *Backoffer, txnID uint64, primary []byte
 		cmdResp := resp.Resp.(*kvrpcpb.CheckTxnStatusResponse)
 		logutil.BgLogger().Debug("cmdResp", zap.Bool("nil", cmdResp == nil))
 		// Assign status with response
-		// YOUR CODE HERE (lab3).
+		// YOUR CODE HERE (lab2).
 		panic("YOUR CODE HERE")
 		return status, nil
 	}
@@ -349,7 +349,7 @@ func (lr *LockResolver) resolveLock(bo *Backoffer, l *Lock, status TxnStatus, cl
 		var req *tikvrpc.Request
 
 		// build the request
-		// YOUR CODE HERE (lab3).
+		// YOUR CODE HERE (lab2).
 		panic("YOUR CODE HERE")
 
 		resp, err := lr.store.SendReq(bo, req, loc.Region, readTimeoutShort)

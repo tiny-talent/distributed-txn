@@ -62,7 +62,7 @@ func rollbackKey(key []byte, txn *mvcc.MvccTxn, response interface{}) (interface
 		// commit and rollback requests.
 		// There is no write either, presumably the prewrite was lost. We insert a rollback write anyway.
 		if existingWrite == nil {
-			// YOUR CODE HERE (lab2).
+			// YOUR CODE HERE (lab1).
 
 			return nil, nil
 		} else {

@@ -7,6 +7,20 @@ after failover.In this chapter, we'll discuss the design and implementation of t
 
 The percolator protocol is used to guarantee the `Atomicity`, and to sequence concurrent transactions executions the global timestamp ordering is used. Based on these a strong isolation level which is usually called `Snapshot Isolation` or `Repeatable Read` could be provided for the client. The percolator protocol is implemented in both `tinysql` and `tinykv` servers, and the allocation of global transaction timestamp is done by the `tinyscheduler` server, and all the logical timestamp is monotonically increasing. In this lab we're going to implement the `tinykv` percolator part, or the distributed transaction participant part.
 
+#### Implement The Core Interfaces of `StandAlongStorage`
+
+Try to implement the missing code in `kv/storage/standalone_storage/standalone_storage.go`, these code parts are marked with:
+
+`// YOUR CODE HERE (lab1).`
+
+After finishing these parts, run `make lab1P0` command to check if all the test cases are passed. Things to note:
+- As the [badger](https://github.com/dgraph-io/badger) is used as the storage engine, the common usages could be found in its documents and repository.
+- The `badger` storage engine does not support [`column family`](https://en.wikipedia.org/wiki/Standard_column_family). The column families are needed for the `percolator` transaction model, in `tinykv` the column family related utilites are already wrapped in `kv/util/engine_util/util.go`. When process the `storage.Modify`, the key written into
+  the storage engine should be encoded using `KeyWithCF` function considering its expected column family. In `tinykv` there are two types of `Modify`, check the `kv/storage/modify.go` for more information.
+- The `scheduler_client.Client` will not be used by the`standAloneServer`, so it could be skipped.
+- The `txn` features and related read/write interfaces provided by `badger` could be considered. Check about the `BadgerReader` for more information.
+- Some test cases could be useful to understand the usages of the storage interface.
+
 ## Implement Percolator In TinyKV
 
 The transaction processing flow is like this:
@@ -86,6 +100,8 @@ used to return this value of the current command.
 
 Try to understand the whole process of the client requests processing(transaction command processing and `raftStore` log commit/apply). The transaction command results in some write mutations, these mutations will be converted into raft command requests and sent to the `raftStore`, after propose, commit and apply processing in the `raftStore`, the transaction command is considered successful and results are sent back to the clients.
 
+This lab eliminates the `raftStore`, for guys who have interests of it, check [TinyKV](https://github.com/tidb-incubator/tinykv) out.
+
 ![raftStore](imgs/raftstore.png)
 
 
@@ -95,7 +111,7 @@ Try to understand the whole process of the client requests processing(transactio
 These code parts are marked with:
 
 ```
-// YOUR CODE HERE (lab2).
+// YOUR CODE HERE (lab1).
 ```
 
 #### Implement the `Prewrite` and `Commit` Commands
@@ -103,7 +119,7 @@ These code parts are marked with:
 These are the two most important interfaces of our transaction engine, try to implement the missing code in `kv/transaction/commands/prewrite.go` and `kv/transaction/commands/commit.go`.  These code parts are marked with:
 
 ```
-// YOUR CODE HERE (lab2).
+// YOUR CODE HERE (lab1).
 ```
 
 Things to note:
@@ -119,7 +135,7 @@ After finish these two parts, run `make lab2P1` to check if all the tests are pa
 `Rollback` is used unlock the key and put the `Rollback Record` for a key. `CheckTxnStatus` is used to query the primary key lock status for a specific transaction. try to implement the missing code in `kv/transaction/commands/rollback.go` and `kv/transaction/commands/checkTxn.go`, These code parts are marked with:
 
 ```
-// YOUR CODE HERE (lab2).
+// YOUR CODE HERE (lab1).
 ```
 After finish these parts, run `make lab2P2` to check if all the tests are passed. Things to note:
 - Consider the situation query lock dose not exist.
@@ -133,7 +149,7 @@ After finish these parts, run `make lab2P2` to check if all the tests are passed
 These code parts are marked with:
 
 ```
-// YOUR CODE HERE (lab2).
+// YOUR CODE HERE (lab1).
 ```
 
 After finish these parts, run `make lab2P3` to check if all the tests are passed. Things to note:

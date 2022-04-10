@@ -32,11 +32,11 @@ func (g *Get) Read(txn *mvcc.RoTxn) (interface{}, [][]byte, error) {
 	response := new(kvrpcpb.GetResponse)
 
 	panic("kv get is not implemented yet")
-	// YOUR CODE HERE (lab2).
+	// YOUR CODE HERE (lab1).
 	// Check for locks and their visibilities.
 	// Hint: Check the interfaces provided by `mvcc.RoTxn`.
 
-	// YOUR CODE HERE (lab2).
+	// YOUR CODE HERE (lab1).
 	// Search writes for a committed value, set results in the response.
 	// Hint: Check the interfaces provided by `mvcc.RoTxn`.
 

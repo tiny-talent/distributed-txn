@@ -456,7 +456,7 @@ func (c *RegionCache) LocateRegionByID(bo *Backoffer, regionID uint64) (*KeyLoca
 //
 // Help function `RegionCache.LocateKey`
 func (c *RegionCache) GroupKeysByRegion(bo *Backoffer, keys [][]byte, filter func(key, regionStartKey []byte) bool) (map[RegionVerID][][]byte, RegionVerID, error) {
-	// YOUR CODE HERE (lab3).
+	// YOUR CODE HERE (lab2).
 	panic("YOUR CODE HERE")
 	return nil, RegionVerID{}, nil
 }

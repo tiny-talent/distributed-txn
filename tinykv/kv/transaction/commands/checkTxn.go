@@ -34,7 +34,7 @@ func (c *CheckTxnStatus) PrepareWrites(txn *mvcc.MvccTxn) (interface{}, error) {
 	panic("CheckTxnStatus is not implemented yet")
 	if lock != nil && lock.Ts == txn.StartTS {
 		if physical(lock.Ts)+lock.Ttl < physical(c.request.CurrentTs) {
-			// YOUR CODE HERE (lab2).
+			// YOUR CODE HERE (lab1).
 			// Lock has expired, try to rollback it. `mvcc.WriteKindRollback` could be used to
 			// represent the type. Try using the interfaces provided by `mvcc.MvccTxn`.
 			log.Info("checkTxnStatus rollback the primary lock as it's expired",
@@ -58,7 +58,7 @@ func (c *CheckTxnStatus) PrepareWrites(txn *mvcc.MvccTxn) (interface{}, error) {
 	}
 	panic("CheckTxnStatus is not implemented yet")
 	if existingWrite == nil {
-		// YOUR CODE HERE (lab2).
+		// YOUR CODE HERE (lab1).
 		// The lock never existed, it's still needed to put a rollback record on it so that
 		// the stale transaction commands such as prewrite on the key will fail.
 		// Note try to set correct `response.Action`,

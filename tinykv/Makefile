@@ -108,47 +108,16 @@ clean:
 lab1P0:
 	$(GOTEST) ./kv/server -run 1
 
-# P1 is the basic test for the raft store.
-lab1P1a:
-	$(GOTEST) ./kv/test_raftstore -run TestBasic2BLab1P1a
-
-lab1P1b:
-	$(GOTEST) ./kv/test_raftstore -run Lab1P1b
-
-# P2 is to test the persistency of the raft store that states will not get lost
-# after restarts.
-lab1P2a:
-	$(GOTEST) ./kv/test_raftstore -run TestPersistOneClient2BLab1P2a
-
-lab1P2b:
-	$(GOTEST) ./kv/test_raftstore -run Lab1P2b
-
-# P3 is to test the snapshot utility of the raft store.	Including the snapshot
-# generation, communication and apply, also the recovery from the snapshot.
-lab1P3a:
-	$(GOTEST) ./kv/test_raftstore -run TestOneSnapshot2BLab1P3a
-
-lab1P3b:
-	$(GOTEST) ./kv/test_raftstore -run Lab1P3b
-
-# P4 is to test the configuration changes including leader transfer, add peer and
-# remove peer.
-lab1P4a:
-	$(GOTEST) ./kv/test_raftstore -run Lab1P4a
-
-lab1P4b:
-	$(GOTEST) ./kv/test_raftstore -run Lab1P4b
-
 ###
 # The lab2 related tests.
-lab2P1:
+lab1P1:
 	$(GOTEST) ./kv/transaction/commands -run Lab2P1
 
-lab2P2:
+lab1P2:
 	$(GOTEST) ./kv/transaction/commands -run Lab2P2
 
-lab2P3:
+lab1P3:
 	$(GOTEST) ./kv/transaction/commands -run Lab2P3
 
-lab2P4:
+lab1P4:
 	$(GOTEST) ./kv/transaction/... -run 4

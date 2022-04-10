@@ -6,11 +6,8 @@ import (
 
 	"github.com/pingcap-incubator/tinykv/kv/config"
 	"github.com/pingcap-incubator/tinykv/kv/storage"
-	"github.com/pingcap-incubator/tinykv/kv/storage/raft_storage"
 	"github.com/pingcap-incubator/tinykv/kv/storage/standalone_storage"
 	"github.com/pingcap-incubator/tinykv/kv/util/engine_util"
-	coppb "github.com/pingcap-incubator/tinykv/proto/pkg/coprocessor"
-	"github.com/pingcap-incubator/tinykv/proto/pkg/errorpb"
 	"github.com/pingcap-incubator/tinykv/proto/pkg/kvrpcpb"
 	"github.com/stretchr/testify/assert"
 )
@@ -53,7 +50,6 @@ func cleanUpTestData(conf *config.Config) error {
 func TestRawGet1(t *testing.T) {
 	conf := config.NewTestConfig()
 	s := standalone_storage.NewStandAloneStorage(conf)
-	s.Start(nil)
 	server := NewServer(s)
 	defer cleanUpTestData(conf)
 	defer s.Stop()
@@ -73,7 +69,6 @@ func TestRawGet1(t *testing.T) {
 func TestRawGetNotFound1(t *testing.T) {
 	conf := config.NewTestConfig()
 	s := standalone_storage.NewStandAloneStorage(conf)
-	s.Start(nil)
 	server := NewServer(s)
 	defer cleanUpTestData(conf)
 	defer s.Stop()
@@ -91,7 +86,6 @@ func TestRawGetNotFound1(t *testing.T) {
 func TestRawPut1(t *testing.T) {
 	conf := config.NewTestConfig()
 	s := standalone_storage.NewStandAloneStorage(conf)
-	s.Start(nil)
 	server := NewServer(s)
 	defer cleanUpTestData(conf)
 	defer s.Stop()
@@ -113,7 +107,6 @@ func TestRawPut1(t *testing.T) {
 func TestRawGetAfterRawPut1(t *testing.T) {
 	conf := config.NewTestConfig()
 	s := standalone_storage.NewStandAloneStorage(conf)
-	s.Start(nil)
 	server := NewServer(s)
 	defer cleanUpTestData(conf)
 	defer s.Stop()
@@ -154,7 +147,6 @@ func TestRawGetAfterRawPut1(t *testing.T) {
 func TestRawGetAfterRawDelete1(t *testing.T) {
 	conf := config.NewTestConfig()
 	s := standalone_storage.NewStandAloneStorage(conf)
-	s.Start(nil)
 	server := NewServer(s)
 	defer cleanUpTestData(conf)
 	defer s.Stop()
@@ -182,7 +174,6 @@ func TestRawGetAfterRawDelete1(t *testing.T) {
 func TestRawDelete1(t *testing.T) {
 	conf := config.NewTestConfig()
 	s := standalone_storage.NewStandAloneStorage(conf)
-	s.Start(nil)
 	server := NewServer(s)
 	defer cleanUpTestData(conf)
 	defer s.Stop()
@@ -206,7 +197,6 @@ func TestRawDelete1(t *testing.T) {
 func TestRawScan1(t *testing.T) {
 	conf := config.NewTestConfig()
 	s := standalone_storage.NewStandAloneStorage(conf)
-	s.Start(nil)
 	server := NewServer(s)
 	defer cleanUpTestData(conf)
 	defer s.Stop()
@@ -239,7 +229,6 @@ func TestRawScan1(t *testing.T) {
 func TestRawScanAfterRawPut1(t *testing.T) {
 	conf := config.NewTestConfig()
 	s := standalone_storage.NewStandAloneStorage(conf)
-	s.Start(nil)
 	server := NewServer(s)
 	defer cleanUpTestData(conf)
 	defer s.Stop()
@@ -279,7 +268,6 @@ func TestRawScanAfterRawPut1(t *testing.T) {
 func TestRawScanAfterRawDelete1(t *testing.T) {
 	conf := config.NewTestConfig()
 	s := standalone_storage.NewStandAloneStorage(conf)
-	s.Start(nil)
 	server := NewServer(s)
 	defer cleanUpTestData(conf)
 	defer s.Stop()
@@ -318,7 +306,6 @@ func TestRawScanAfterRawDelete1(t *testing.T) {
 func TestIterWithRawDelete1(t *testing.T) {
 	conf := config.NewTestConfig()
 	s := standalone_storage.NewStandAloneStorage(conf)
-	s.Start(nil)
 	server := NewServer(s)
 	defer cleanUpTestData(conf)
 	defer s.Stop()
@@ -346,24 +333,5 @@ func TestIterWithRawDelete1(t *testing.T) {
 		key := item.Key()
 		assert.Equal(t, expectedKeys[i], key)
 		i++
-	}
-}
-
-func TestRegionError(t *testing.T) {
-	responses := make([]interface{}, 0, 8)
-	responses = append(responses, new(kvrpcpb.GetResponse))
-	responses = append(responses, new(kvrpcpb.ScanResponse))
-	responses = append(responses, new(kvrpcpb.PrewriteResponse))
-	responses = append(responses, new(kvrpcpb.CommitResponse))
-	responses = append(responses, new(kvrpcpb.CheckTxnStatusResponse))
-	responses = append(responses, new(kvrpcpb.BatchRollbackResponse))
-	responses = append(responses, new(kvrpcpb.ResolveLockResponse))
-	responses = append(responses, new(coppb.Response))
-
-	for _, resp := range responses {
-		regionErr := &raft_storage.RegionError{RequestErr: &errorpb.Error{NotLeader: &errorpb.NotLeader{}}}
-		newResp, err := regionError(regionErr, resp)
-		assert.Nil(t, err)
-		assert.NotNil(t, newResp)
 	}
 }

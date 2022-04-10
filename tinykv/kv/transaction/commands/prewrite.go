@@ -65,19 +65,19 @@ func (p *Prewrite) prewriteMutation(txn *mvcc.MvccTxn, mut *kvrpcpb.Mutation) (*
 	key := mut.Key
 	log.Debug("prewrite key", zap.Uint64("start_ts", txn.StartTS),
 		zap.String("key", hex.EncodeToString(key)))
-	// YOUR CODE HERE (lab2).
+	// YOUR CODE HERE (lab1).
 	// Check for write conflicts.
 	// Hint: Check the interafaces provided by `mvcc.MvccTxn`. The error type `kvrpcpb.WriteConflict` is used
 	//		 denote to write conflict error, try to set error information properly in the `kvrpcpb.KeyError`
 	//		 response.
 	panic("prewriteMutation is not implemented yet")
 
-	// YOUR CODE HERE (lab2).
+	// YOUR CODE HERE (lab1).
 	// Check if key is locked. Report key is locked error if lock does exist, note the key could be locked
 	// by this transaction already and the current prewrite request is stale.
 	panic("check lock in prewrite is not implemented yet")
 
-	// YOUR CODE HERE (lab2).
+	// YOUR CODE HERE (lab1).
 	// Write a lock and value.
 	// Hint: Check the interfaces provided by `mvccTxn.Txn`.
 	panic("lock record generation is not implemented yet")

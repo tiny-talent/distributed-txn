@@ -28,7 +28,7 @@ func NewCommit(request *kvrpcpb.CommitRequest) Commit {
 
 func (c *Commit) PrepareWrites(txn *mvcc.MvccTxn) (interface{}, error) {
 	commitTs := c.request.CommitVersion
-	// YOUR CODE HERE (lab2).
+	// YOUR CODE HERE (lab1).
 	// Check if the commitTs is invalid, the commitTs must be greater than the transaction startTs. If not
 	// report unexpected error.
 	panic("PrepareWrites is not implemented for commit command")
@@ -58,7 +58,7 @@ func commitKey(key []byte, commitTs uint64, txn *mvcc.MvccTxn, response interfac
 		zap.Uint64("commitTs", commitTs),
 		zap.String("key", hex.EncodeToString(key)))
 	if lock == nil || lock.Ts != txn.StartTS {
-		// YOUR CODE HERE (lab2).
+		// YOUR CODE HERE (lab1).
 		// Key is locked by a different transaction, or there is no lock on the key. It's needed to
 		// check the commit/rollback record for this key, if nothing is found report lock not found
 		// error. Also the commit request could be stale that it's already committed or rolled back.

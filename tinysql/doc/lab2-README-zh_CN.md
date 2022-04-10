@@ -65,7 +65,7 @@ make failpoint-disable
 
 ## 测试
 
-运行 `make lab3`，通过所有测试用例。
+运行 `make lab2`，通过所有测试用例。
 
 可以使用下面的命令测试指定的单个或多个用例。
 

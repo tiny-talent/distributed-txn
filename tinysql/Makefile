@@ -267,7 +267,7 @@ vectorized-bench:
 			-run=BenchmarkVectorizedBuiltin$(VB_FILE)Func \
 			-args "$(VB_FUNC)"
 
-lab3: failpoint-enable
+lab2: failpoint-enable
 	go test -timeout 600s ./store/tikv
 	@$(FAILPOINT_DISABLE)
 

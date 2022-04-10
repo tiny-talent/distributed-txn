@@ -49,9 +49,9 @@ export GOPROXY=https://goproxy.io,direct
 
 ### 加入 Github Classrom
 
-参考 [classroom doc](./docs/classroom.md) 进入 github classroom 之后，将会自动生成 `vldb-2021-labs` 对应个人 private repo，尝试将该 repo clone 到本地
+参考 [classroom doc](./docs/classroom.md) 进入 github classroom 之后，将会自动生成 `distributed-txn` 对应个人 private repo，尝试将该 repo clone 到本地
 ```
-git clone git@github.com/vldbss-2021/vldb-labs-yourid.git .
+git clone git@github.com/tiny-talent/distributed-txn-yourid.git .
 ```
 
 即可进行本地开发调试，测试过程可参考每个 lab 具体说明文档进行。在该 private repo 提交修改到 master 分支之后，github classroom 也将自动执行评分任务。推荐本地测试通过之后再提交 master 分支修改进行后台评分。

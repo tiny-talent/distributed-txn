@@ -13,6 +13,7 @@ require (
 	github.com/google/btree v1.0.0
 	github.com/google/uuid v1.1.1
 	github.com/gorilla/mux v1.6.2
+	github.com/ngaut/log v0.0.0-20210830112240-0124ec040aeb // indirect
 	github.com/ngaut/pools v0.0.0-20180318154953-b7bc8c42aac7
 	github.com/pingcap-incubator/tinykv v0.0.0-20200320061650-f660f803e910
 	github.com/pingcap/check v0.0.0-20200212061837-5e12011dc712

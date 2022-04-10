@@ -38,7 +38,7 @@ If you don't use [GitHub classroom](https://classroom.github.com/), just fork th
 First, please clone the repository with git to get the source code of the project.
 
 ``` bash
-git clone https://github.com/vldbss-2021/vldb-2021-labs-{{username}}.git
+git clone https://github.com/tiny-talent/distributed-txn-{{username}}.git
 ```
 
 Then make sure you have installed [go](https://golang.org/doc/install) >= 1.13 toolchains. You should also have installed `make`.
