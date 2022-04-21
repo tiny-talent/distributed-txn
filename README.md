@@ -10,6 +10,12 @@ There are several modules in a distributed database.
 - TinyScheduler, it is used to manager and schedule TinyKV cluster.
 - TinySQL, the SQL layer of TinyKV engine.
 
+## Course
+
+You can find some material of distributed database in [reading list](./tinykv/doc/reading_list.md).
+
+The [course of VLDBSS 2021](https://learn.pingcap.com/learner/course/750001)(in Chinese) may help you with this lab.
+
 ## Labs
 
 There are 2 labs in this course.

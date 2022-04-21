@@ -1,9 +1,8 @@
-# LAB 2 The Transaction Layer - TinyKV Part
+# The Transaction Layer - TinyKV Part
 
 ## The Design
 
-In lab 1 we've completed the raft log engine and the storage engine. With the raft log engine, the transaction logs are persisted "reliably" and the states could be restored
-after failover.In this chapter, we'll discuss the design and implementation of the **distributed transaction layer**. The raft log engine has provided the `Durability` and state recover insurances, the transaction layer needs to guarantee the `Atomicity` and the correctness with concurrency or `Isolation`. 
+The transaction layer needs to guarantee the `Atomicity` and the correctness with concurrency or `Isolation`. 
 
 The percolator protocol is used to guarantee the `Atomicity`, and to sequence concurrent transactions executions the global timestamp ordering is used. Based on these a strong isolation level which is usually called `Snapshot Isolation` or `Repeatable Read` could be provided for the client. The percolator protocol is implemented in both `tinysql` and `tinykv` servers, and the allocation of global transaction timestamp is done by the `tinyscheduler` server, and all the logical timestamp is monotonically increasing. In this lab we're going to implement the `tinykv` percolator part, or the distributed transaction participant part.
 
@@ -97,12 +96,6 @@ type Command interface {
 The `WillWrite` generate the write content need to be written for this request, the `Read` will execute the read requests needed by this command. `PrepareWrites` is used
 to build the actual write contents for this command, it's the core part for write command processing. As each transaction may have its unique identifier, the `start_ts` which is the allocated global timestamp, the `StartTs` is
 used to return this value of the current command.
-
-Try to understand the whole process of the client requests processing(transaction command processing and `raftStore` log commit/apply). The transaction command results in some write mutations, these mutations will be converted into raft command requests and sent to the `raftStore`, after propose, commit and apply processing in the `raftStore`, the transaction command is considered successful and results are sent back to the clients.
-
-This lab eliminates the `raftStore`, for guys who have interests of it, check [TinyKV](https://github.com/tidb-incubator/tinykv) out.
-
-![raftStore](imgs/raftstore.png)
 
 
 #### Implement the `Get` Command
