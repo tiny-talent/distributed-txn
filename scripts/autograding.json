@@ -1,0 +1,64 @@
+{
+  "tests": [
+    {
+      "name": "lab1P0",
+      "setup": "",
+      "run": "cd tinykv && make lab1P0",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "lab1P1",
+      "setup": "",
+      "run": "cd tinykv && make lab1P1",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "lab1P2",
+      "setup": "",
+      "run": "cd tinykv && make lab1P2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "lab1P3",
+      "setup": "",
+      "run": "cd tinykv && make lab1P3",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "lab1P4",
+      "setup": "",
+      "run": "cd tinykv && make lab1P4",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "lab2",
+      "setup": "",
+      "run": "cd tinysql && make lab2",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    }
+  ]
+}
