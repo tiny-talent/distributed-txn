@@ -67,9 +67,9 @@ These conflict processing is called `Resolve` in `tinysql/tinykv` clusters. Once
 by the concurrent transaction requests from other `tinysql` servers.
 
 
-## LAB2
+## LAB1
 
-We're going to implement the above interface and their processing logic in tinykv server.
+Before starting this section, please complete [lab1P0](#implement-the-core-interfaces-of-standalongstorage) above. We're going to implement the above interface and their processing logic in tinykv server.
 
 ### The Code
 
@@ -121,7 +121,7 @@ Things to note:
 - `CommitTS` is the expected commit timestamp for one record.
 - Consider the read write conflicts processing.
 
-After finish these two parts, run `make lab2P1` to check if all the tests are passsed.
+After finish these two parts, run `make lab1P1` to check if all the tests are passsed.
 
 #### Implement the `Rollback` and `CheckTxnStatus` Commands
 
@@ -130,7 +130,7 @@ After finish these two parts, run `make lab2P1` to check if all the tests are pa
 ```
 // YOUR CODE HERE (lab1).
 ```
-After finish these parts, run `make lab2P2` to check if all the tests are passed. Things to note:
+After finish these parts, run `make lab1P2` to check if all the tests are passed. Things to note:
 - Consider the situation query lock dose not exist.
 - There could be duplicate requests as these commands are sent through rpc requests from tinysql server.
 - There are three different response actions in the `CheckTxnStatusResponse`. `Action_TTLExpireRollback` means the target lock is rolled back as it has expired and `Action_LockNotExistRollback` means the target lock does not exist and the rollback record is written.
@@ -145,8 +145,8 @@ These code parts are marked with:
 // YOUR CODE HERE (lab1).
 ```
 
-After finish these parts, run `make lab2P3` to check if all the tests are passed. Things to note:
+After finish these parts, run `make lab1P3` to check if all the tests are passed. Things to note:
 - The transaction status has been decided in the input request parameters.
 - The `rollbackKey` and `commitKey` could be helpful.
 
-After all the commands and tests are finished, run `make lab2P4` to check if tests in another suite are passed. In the next lab we'll try to implement the transaction coordinator part for percolator protocol in the `tinysql` server, and all these commands will be used.
+After all the commands and tests are finished, run `make lab1P4` to check if tests in another suite are passed. In the next lab we'll try to implement the transaction coordinator part for percolator protocol in the `tinysql` server, and all these commands will be used.
