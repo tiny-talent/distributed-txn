@@ -67,9 +67,9 @@ These conflict processing is called `Resolve` in `tinysql/tinykv` clusters. Once
 by the concurrent transaction requests from other `tinysql` servers.
 
 
-## LAB2
+## LAB1
 
-We're going to implement the above interface and their processing logic in tinykv server.
+Before starting this section, please complete [lab1P0](#implement-the-core-interfaces-of-standalongstorage) above. We're going to implement the above interface and their processing logic in tinykv server.
 
 ### The Code
 
